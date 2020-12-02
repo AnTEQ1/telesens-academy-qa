@@ -7,12 +7,12 @@ public class Task4 {
         int sum = 0;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите двузначное число:");
-        int a = scanner.nextInt();
-        if (a >= 10 && a < 100) {
-            System.out.println("Вы ввели число: " + a);
+        int n = scanner.nextInt();
+        if (n >= 10 && n < 100) {
+            System.out.println("Вы ввели число: " + n);
             for (int i = 0; i < 2; i++){
-                sum += a % 10;
-                a = a/10;
+                sum += n % 10;
+                n = n/10;
             }
             System.out.println("Сумма цифр исходного числа: " + sum);
         } else {
