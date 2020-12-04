@@ -33,5 +33,4 @@ public class Task7 {
         }
         System.out.println("Массив наполненный значениями при помощи цикла while: " + Arrays.toString(arrWhile));
     }
-
 }
