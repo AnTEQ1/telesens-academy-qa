@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Task1 {
 
     public static void main(String[] args) {
-        stringEditor ();
+        stringEditor (); // не посчитает если первое слово начинается на d
     }
 
     public static void stringEditor (){
