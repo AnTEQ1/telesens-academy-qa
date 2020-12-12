@@ -97,10 +97,7 @@ public class CustomDate {
     }
 
     public String getFormattedDate(CustomDate customDate) {
-        if (customDate.getMonth() >= 1 && customDate.getMonth() <= 9)
-            return String.format("%s.0%s.%s", customDate.getDay(), customDate.getMonth(), customDate.getYear());
-        else {
-            return String.format("%s.%s.%s", customDate.getDay(), customDate.getMonth(), customDate.getYear());
-        }
+            return String.format("%02d.%02d.%02d", customDate.getDay(), customDate.getMonth(), customDate.getYear());
+
     }
 }
