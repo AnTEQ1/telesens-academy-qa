@@ -17,5 +17,13 @@ public class Abonent {
         String sex = scanner.next();
         System.out.println("Введите номер телефона:");
         String phoneNumber = scanner.next();
+
+        System.out.println("-----Абонент-----");
+        System.out.println("Имя: " + name);
+        System.out.println("Фамилия: " + lastName);
+        System.out.println("Отчество: " + patronomic);
+        System.out.println("Возраст: " + age);
+        System.out.println("Пол:" + sex);
+        System.out.println("Номер телефона: " + phoneNumber);
     }
 }
