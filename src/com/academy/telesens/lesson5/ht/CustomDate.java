@@ -20,14 +20,14 @@ package com.academy.telesens.lesson5.ht;
  *			вторника - 1
  *			и т.д.
  *		- проверить работу методов:
- *			getFormattedDate()
- *			validate()
+ *			/getFormattedDate()
+ *			/validate()
  *			dayOfWeek()
  *
  * 2) Создать массив размера 10, состоящий из классов CustomDate
- *	- наполнить массив случайными значениями действительных дат
- *	- вывести все даты массива на консоль
- *	- вывести только даты месяца февраль
+ *	/- наполнить массив случайными значениями действительных дат
+ *	/- вывести все даты массива на консоль
+ *	/- вывести только даты месяца февраль
  *	- *вывести только даты понедельника
  */
 
@@ -43,33 +43,59 @@ public class CustomDate {
     }
 
     public static boolean validate(int day, int month, int year) {
-        if (year >= 1 && year <= 9999) {
-            if (month >= 1 && month <= 12) {
-                if (month % 2 != 0 && (day >= 1 && day <= 31)) {
-                    return true;
-                } else if (month % 2 == 0 && (day >= 1 && day <= 30)) {
-                    if (month == 2 && day <= 28) {
-                        return true;
-                    } else if (month == 2 && day <= 29) {
-                        int firstCheck = year % 4;
-                        int secondCheck = year % 100;
-                        int thirdCheck = year % 400;
-                        if (firstCheck == 0 || (secondCheck != 0 && thirdCheck == 0)) {
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    } else {
-                        return false;
-                    }
-                }
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
+        boolean thirtyDaysInMonth = false;
+        boolean yearIsExist = false;
+        boolean monthIsExist = false;
+        boolean thirtyDaysRange = false;
+        boolean thirtyOneDaysRange = false;
+        boolean twentyNinthOfFebruary = false;
+        boolean isFebruary = false;
+        boolean isDateExist = false;
+
+        if (month == 4 || month == 6 || month == 9 || month == 11){ // В месяце 30 дней?
+            thirtyDaysInMonth = true;
         }
+        if(year >= 1 && year <= 9999){ // Ограничение диапазона годов
+            yearIsExist = true;
+        }
+        if (month >= 1 && month <= 12){ // Существует ли введенный месяц
+            monthIsExist = true;
+        }
+        if (month!= 2 && (day >= 1 && day <= 31)){ // число от 01 до 31
+            thirtyOneDaysRange = true;
+        }
+        if (month!= 2 && (day >= 1 && day <= 30)) { // число от 01 до 31
+            thirtyDaysRange = true;
+        }
+        if (month == 2 && (day>=1 && day<=28)){ // числа февраля от 01 до 28
+            isFebruary = true;
+        }
+        if (month == 2 && day == 29){ // если пришло 29-е февраля ...
+            int firstCheck = year % 4;
+            int secondCheck = year % 100;
+            int thirdCheck = year % 400;
+            if (firstCheck == 0 || (secondCheck != 0 && thirdCheck == 0)) { // то проверяем что год высокосный
+                twentyNinthOfFebruary = true;
+            }
+        }
+
+        if (yearIsExist){ // год попадает в ограничения...
+            if (monthIsExist){ // и месяц существует ...
+                if (thirtyDaysRange && thirtyDaysInMonth){ // проверяем что дата не выходит за рамки месяца с 30ю числами
+                    isDateExist = true;
+                }
+                if (thirtyOneDaysRange && !thirtyDaysInMonth){ // проверяем что дата не выходит за рамки месяца с 31м числом
+                    isDateExist = true;
+                }
+                if (isFebruary){ // проверяем что дата попадает в 28-мь чисел февралая
+                    isDateExist = true;
+                }
+                if (twentyNinthOfFebruary){ // проеряем что 29-е февраля попадает в высокосный год
+                    isDateExist = true;
+                }
+            }
+        }
+        return isDateExist;
     }
 
     public int getDay() {
@@ -77,7 +103,7 @@ public class CustomDate {
     }
 
     public void setDay(int day) {
-        this.day = day;
+            this.day = day;
     }
 
     public int getMonth() {
@@ -97,7 +123,7 @@ public class CustomDate {
     }
 
     public String getFormattedDate(CustomDate customDate) {
-            return String.format("%02d.%02d.%02d", customDate.getDay(), customDate.getMonth(), customDate.getYear());
+            return String.format("%02d.%02d.%04d", customDate.getDay(), customDate.getMonth(), customDate.getYear());
 
     }
 }
