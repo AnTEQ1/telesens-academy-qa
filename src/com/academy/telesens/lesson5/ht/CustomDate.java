@@ -36,10 +36,16 @@ public class CustomDate {
     private int month;
     private int year;
 
+    public CustomDate() {
+        this.day = 15;
+        this.month = 12;
+        this.year = 2020;
+    }
+
     public CustomDate(int day, int month, int year) {
-        this.setDay(day);
-        this.setMonth(month);
-        this.setYear(year);
+        this.day = day;
+        this.month = month;
+        this.year = year;
     }
 
     public static boolean validate(int day, int month, int year) {
