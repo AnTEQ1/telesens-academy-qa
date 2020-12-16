@@ -5,7 +5,7 @@ import java.util.Random;
 public class CustomDateDemo {
     public static void main (String[] args){
         CustomDate customDate = new CustomDate(30,1,2020);
-        System.out.println(customDate.getFormattedDate(customDate)); // Проверка работы меода getFormattedDate
+        System.out.println(customDate.getFormattedDate(/*customDate*/)); // Проверка работы меода getFormattedDate
         System.out.println(CustomDate.validate(29,2,1600)); // Проверка работы метода validate
 
         CustomDate[] customDatesArray = new CustomDate[10];
@@ -28,11 +28,11 @@ public class CustomDateDemo {
             if (result){
                 customDatesArray[i] = new CustomDate(day,month,year);
             }
-            System.out.println(customDate.getFormattedDate(customDatesArray[i]));
+            System.out.println(customDatesArray[i].getFormattedDate());
         }
         System.out.println("***** Числа февраля ******");
         for (int i = 0; i<customDatesArray.length; i++){
-            String row = customDate.getFormattedDate(customDatesArray[i]);
+            String row = customDatesArray[i].getFormattedDate();
             boolean monthIsFebruary = row.contains(".02.");
             if (monthIsFebruary){
                 System.out.println(row);

@@ -128,8 +128,7 @@ public class CustomDate {
         this.year = year;
     }
 
-    public String getFormattedDate(CustomDate customDate) {
-            return String.format("%02d.%02d.%04d", day, month, year);
-
+    public String getFormattedDate() {
+        return String.format("%02d.%02d.%04d", day, month, year);
     }
 }
