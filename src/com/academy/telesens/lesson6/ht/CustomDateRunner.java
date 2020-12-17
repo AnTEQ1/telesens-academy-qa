@@ -1,7 +1,5 @@
 package com.academy.telesens.lesson6.ht;
 
-import com.academy.telesens.lesson5.ht.CustomDate;
-
 public class CustomDateRunner {
     public static void main(String[] args) {
         CustomDateTime customDateTime = new CustomDateTime();
