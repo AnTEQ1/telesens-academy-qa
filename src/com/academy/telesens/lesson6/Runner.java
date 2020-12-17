@@ -1,9 +1,11 @@
 package com.academy.telesens.lesson6;
 
+import com.academy.telesens.lesson7.enumeration.Gender;
+
 public class Runner {
     public static void main(String[] args) {
         Operator operator = new Operator("Vodafone", "Kyiv");
-        Subscriber subscriber = new Subscriber("Иван", "Иванов", 25, "М", "0669545856", operator);
+        Subscriber subscriber = new Subscriber("Иван", "Иванов", 25, Gender.MALE, "0669545856", operator);
         String profile = subscriber.getProfile();
         System.out.println(profile);
         //System.out.println(subscriber.getPhoneNumder());

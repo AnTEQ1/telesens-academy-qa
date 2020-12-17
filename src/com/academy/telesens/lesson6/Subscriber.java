@@ -1,6 +1,7 @@
 package com.academy.telesens.lesson6;
 
 import com.academy.telesens.lesson5.exc.Person;
+import com.academy.telesens.lesson7.enumeration.Gender;
 
 public class Subscriber extends Person {
     private  String phoneNumder;
@@ -12,7 +13,7 @@ public class Subscriber extends Person {
     public Subscriber (String firstName,
                        String lastName,
                        int age,
-                       String gender,
+                       Gender gender,
                        String phoneNumder,
                        Operator operator){
         super(firstName, lastName,age,gender); // конструктор базового класса. Должен быть вызван первым
@@ -43,8 +44,8 @@ public class Subscriber extends Person {
     }*/
 
     public String getProfile(){
-        return super.getProfile() + String.format(" Номер телефона: %s\n Оперптор: %s\n",
-                phoneNumder, operator.getName());
+        return super.getProfile() + String.format(" Номер телефона: %s\n Оперптор: \n",
+                phoneNumder/*, operator.getName()*/);
     }
 
     public Subscriber withFirstName(String firstName){
