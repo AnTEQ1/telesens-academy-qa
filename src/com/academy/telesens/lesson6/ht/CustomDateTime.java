@@ -1,6 +1,9 @@
 package com.academy.telesens.lesson6.ht;
 
 import com.academy.telesens.lesson5.ht.CustomDate;
+
+import java.util.Objects;
+
 /*1) Реализовать класс CustomDateTime, который наследуется от класса CustomDate.
 *        Поля (все поля private):
 *        /- hour (часы)
@@ -25,43 +28,43 @@ import com.academy.telesens.lesson5.ht.CustomDate;
 *        /25.01.2017 15:05  	  // isTimeFormat12 is false
 *
 *        Переопределить методы:
-*        toString // отображает дату и время 25.01.2017 15:05:35
-*        equals
-*        hashCode
+*        /toString // отображает дату и время 25.01.2017 15:05:35
+*        /equals
+*        /hashCode
 *
-*        - реализовать метод validate(), который проверяет существование введенного времени
+*        /- реализовать метод validate(), который проверяет существование введенного времени
 *
 *        - использовать метод validate(...)
-*        при попытке изменть инициализировать класс с помощью конструктора
-*        или при попытке модифицировать поля с помощью методов set
+*        /при попытке изменть инициализировать класс с помощью конструктора
+*        /или при попытке модифицировать поля с помощью методов set
 *
-*        - реализовать методы
-*        nextSecond();
-*        nextMinute();
-*        nextHour();
-*        которые увелечивают на единицу значение секунды, минуты и часа соответственно, при чем если кол-во часов достигается
-*        24, то должно увеличиться на единицу значение поля day из базового класса
+*        /- реализовать методы
+*        /nextSecond();
+*        /nextMinute();
+*        /nextHour();
+*        /которые увелечивают на единицу значение секунды, минуты и часа соответственно, при чем если кол-во часов достигается
+*        /24, то должно увеличиться на единицу значение поля day из базового класса
 *
 *        -* реализовать метод addSeconds(int seconds), который добавляет указанное кол-во секунд к текущей дате
 *
 *
 *        2) Реализовать класс CustomDateTimeExt, который наследуется от класса CustomDateTime
-*        Доп поля (private):
-*        int ms миллисекунды
+*        /Доп поля (private):
+*        /int ms миллисекунды
 *
 *        Конструкторы:
-*        CustomDateTimeExt() - по умолчанию
-*        CustomDateTimeExt(int year, int month, int day, int hour, int minute, int second, int ms) со всеми параметрами
-*        CustomDateTimeExt(CustomDateTimeExt customDateTimeExt)копирования
+*        /CustomDateTimeExt() - по умолчанию
+*        /CustomDateTimeExt(int year, int month, int day, int hour, int minute, int second, int ms) со всеми параметрами
+*        /CustomDateTimeExt(CustomDateTimeExt customDateTimeExt)копирования
 *
-*        Методы:
-*        set
-*        get
+*        /Методы:
+*        /set
+*        /get
 *
-*        toString
-*        equals
-*        hashCode
-*        getFormattedDate() // 25.01.2017 15:05:35.357
+*        /toString
+*        /equals
+*        /hashCode
+*        /getFormattedDate() // 25.01.2017 15:05:35.357
 *
 *        2) Протестировать классы Date, DateTime и DateTimeExt:
 *        - все конструкторы
@@ -82,30 +85,44 @@ public class CustomDateTime extends CustomDate {
         this.second = 38;
     }
 
-    public CustomDateTime(int year, int month, int day, int hour, int minute, int second){
+    public CustomDateTime(int year, int month, int day, int hour, int minute, int second) {
         super(day,month,year);
-        this.hour = hour;
-        this.minute = minute;
-        this.second = second;
+        boolean isTimeValid = validate(hour,minute,second);
+        if (isTimeValid){
+            this.hour = hour;
+            this.minute = minute;
+            this.second = second;
+        } else {
+            System.out.println("Проверьте указанные значения времени");
+        }
     }
 
     public CustomDateTime (CustomDateTime customDateTime) {
-        super(customDateTime.getYear(), customDateTime.getMonth(), customDateTime.getDay());
+        super(customDateTime.getDay(),customDateTime.getMonth(), customDateTime.getYear());
         this.hour = customDateTime.hour;
         this.minute = customDateTime.minute;
         this.second = customDateTime.second;
     }
 
     public void setHour(int hour) {
-        this.hour = hour;
+        boolean isHourExist = validate(hour, this.minute,this.second);
+        if (isHourExist) {
+            this.hour = hour;
+        }
     }
 
     public void setMinute(int minute) {
-        this.minute = minute;
+        boolean isMinutesExist = validate(this.hour, minute,this.second);
+        if (isMinutesExist) {
+            this.minute = minute;
+        }
     }
 
     public void setSecond(int second){
-        this.second = second;
+        boolean isSecondExist = validate(this.hour, this.minute,second);
+        if (isSecondExist) {
+            this.second = second;
+        }
     }
 
     public int getHour() {
@@ -114,6 +131,79 @@ public class CustomDateTime extends CustomDate {
 
     public int getMinute() {
         return minute;
+    }
+
+    public int getSecond() {
+        return second;
+    }
+
+    public static boolean validate(int hour, int minute, int second){
+        boolean hoursIsExist = false;
+        boolean minutesIsExist = false;
+        boolean secondsIsExist = false;
+        boolean isTimeExist = false;
+
+        if (hour >= 0 && hour <= 24) {
+            hoursIsExist = true;
+        }
+        if (minute >= 0 && minute <= 59) {
+            minutesIsExist = true;
+        }
+        if (second >= 0 && second <= 59) {
+            secondsIsExist = true;
+        }
+        if (hoursIsExist && minutesIsExist && secondsIsExist) {
+            isTimeExist = true;
+        }
+        return isTimeExist;
+    }
+
+    public void nextSecond () {
+       int nextSecond = this.second + 1;
+       if (nextSecond == 60) {
+           int nextMinute = this.minute + 1;
+           this.second = 0;
+           if (nextMinute == 60) {
+               int nextHour = this.hour + 1;
+               this.minute = 0;
+               if (nextHour == 24){
+                   super.setDay(this.getDay()+1);
+                   this.hour = 0;
+               } else {
+                   this.hour = nextHour;
+               }
+           } else {
+               this.minute = nextMinute;
+           }
+       } else {
+           this.second = nextSecond;
+       }
+    }
+
+    public void nextMinute() {
+        int nextMinute = this.minute + 1;
+        if (nextMinute == 60) {
+            int nextHour = this.hour + 1;
+            this.minute = 0;
+            if (nextHour == 24){
+                super.setDay(this.getDay()+1);
+                this.hour = 0;
+            } else {
+                this.hour = nextHour;
+            }
+        } else {
+            this.minute = nextMinute;
+        }
+    }
+
+    public void nextHour() {
+        int nextHour = this.hour + 1;
+        if (nextHour == 24) {
+            super.setDay(this.getDay()+1);
+            this.hour = 0;
+        } else {
+            this.hour = nextHour;
+        }
     }
 
     @Override
@@ -162,5 +252,29 @@ public class CustomDateTime extends CustomDate {
         } else {
             return super.getFormattedDate() + String.format(" %02d:%02d:%02d",hour,minute,second);
         }
+    }
+    @Override
+    public String toString() {
+        return "CustomDateTime{" +
+                "day=" + this.getDay() +
+                ", month=" + this.getMonth() +
+                ", year=" + this.getYear() +
+                ", hour=" + hour +
+                ", minute=" + minute +
+                ", second=" + second +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CustomDateTime that = (CustomDateTime) o;
+        return hour == that.hour && minute == that.minute && second == that.second;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(hour, minute, second);
     }
 }
