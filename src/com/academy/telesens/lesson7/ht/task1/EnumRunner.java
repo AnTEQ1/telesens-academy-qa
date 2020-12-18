@@ -1,6 +1,6 @@
 package com.academy.telesens.lesson7.ht.task1;
 
-public class Runner {
+public class EnumRunner {
     public static void main(String[] args) {
         DaysOfWeek daysOfWeek = DaysOfWeek.SUNDAY;
         System.out.println(daysOfWeek);
