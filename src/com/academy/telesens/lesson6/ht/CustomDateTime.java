@@ -1,6 +1,8 @@
 package com.academy.telesens.lesson6.ht;
 
 import com.academy.telesens.lesson5.ht.CustomDate;
+import com.academy.telesens.lesson7.ht.task2.DateFormat;
+import com.academy.telesens.lesson7.ht.task3.TimeFormat;
 
 import java.util.Objects;
 
@@ -211,6 +213,24 @@ public class CustomDateTime extends CustomDate {
         return super.getFormattedDate() + String.format(" %02d:%02d:%02d",hour,minute,second);
     }
 
+    public String getFormattedDate(DateFormat dateFormat, TimeFormat format) {
+        String formattedDate = super.getFormattedDate(dateFormat);
+        String formattedTime;
+        String result = "";
+        switch (format) {
+            case H12:
+                formattedTime = getFormattedDate(true);
+                result =  String.format("%s%s", formattedDate, formattedTime);
+                break;
+            case H24:
+                formattedTime = getFormattedDate(false);
+                result =  String.format("%s%s", formattedDate, formattedTime);
+                break;
+        }
+        return result;
+    }
+
+
     public String getFormattedDate(boolean isTimeFormat12){
         String timeType = "";
         if (isTimeFormat12){
@@ -248,9 +268,9 @@ public class CustomDateTime extends CustomDate {
                 default:
                     break;
             }
-            return super.getFormattedDate() + String.format(" %02d:%02d:%02d %s",hour,minute,second, timeType);
+            return /*super.getFormattedDate() +*/ String.format(" %02d:%02d:%02d %s",hour,minute,second, timeType);
         } else {
-            return super.getFormattedDate() + String.format(" %02d:%02d:%02d",hour,minute,second);
+            return /*super.getFormattedDate() +*/ String.format(" %02d:%02d:%02d",hour,minute,second);
         }
     }
     @Override
