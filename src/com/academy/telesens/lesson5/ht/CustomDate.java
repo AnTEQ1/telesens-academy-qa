@@ -31,6 +31,8 @@ package com.academy.telesens.lesson5.ht;
  *	- *вывести только даты понедельника
  */
 
+import com.academy.telesens.lesson7.ht.task2.DateFormat;
+
 public class CustomDate {
     private int day;
     private int month;
@@ -129,6 +131,33 @@ public class CustomDate {
     }
 
     public String getFormattedDate() {
-        return String.format("%02d.%02d.%04d", day, month, year);
+        String format = DateFormat.RU.name();
+        return String.format("%s: %02d.%02d.%04d", format, day, month, year);
+    }
+
+    public String getFormattedDate(DateFormat format) {
+        String[] monthsNames = {"Января", "Фераля", "Марта", "Апреля", "Мая", "Июня",
+                                "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"};
+        String nameOfMonth = monthsNames[month - 1];
+        String formattedDate = "";
+        switch (format) {
+            case RU:
+                formattedDate = String.format("%02d.%02d.%04d", day, month, year);
+                break;
+            case USA:
+                formattedDate = String.format("%02d-%02d-%04d", month, day, year);
+                break;
+            case ENG:
+                formattedDate = String.format("%02d-%02d-%04d", day, month, year);
+                break;
+            case UK:
+                formattedDate = String.format("%02d/%02d/%04d", day, month, year);
+                break;
+            case CUSTOM:
+                formattedDate = String.format("%02d %s %04dг.", day, nameOfMonth, year);
+                break;
+            default:
+        }
+        return String.format("%s: %s", format.name(), formattedDate);
     }
 }
