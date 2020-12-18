@@ -14,7 +14,7 @@ public enum Gender {
         return ru;
     }
 
-    public void saySomthing() {
+    public void saySomething() {
         if (this == MALE){
             System.out.println("Я мужчина");
         } else {
