@@ -2,7 +2,9 @@ package com.academy.telesens.lesson6.exc;
 
 public class CheckBox extends Button{
     protected Boolean checked = false;
-
+    public CheckBox(String text){
+        super(text);
+    }
     @Override
     public void draw() {
         //super.draw();

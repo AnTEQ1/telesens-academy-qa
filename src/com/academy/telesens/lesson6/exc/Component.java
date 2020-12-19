@@ -1,6 +1,8 @@
 package com.academy.telesens.lesson6.exc;
 
-abstract public class Component {
+import com.academy.telesens.lesson8.VisualComponent;
+
+abstract public class Component implements VisualComponent {
     protected int xPosition;
     protected int yPosition;
     protected int width;
@@ -39,6 +41,10 @@ abstract public class Component {
         return width;
     }
 
+    public Component (String text) {
+        this.text = text;
+    }
+
     public int getHeight() {
         return height;
     }
@@ -47,5 +53,6 @@ abstract public class Component {
         return text;
     }
 
+    @Override
     public abstract void draw();
 }

@@ -6,6 +6,10 @@ public class Button extends Component {
         System.out.println("Draw button");
     }
 
+    public Button (String text) {
+        super(text);
+    }
+
     public void click(){
         System.out.println("Click button");
     }

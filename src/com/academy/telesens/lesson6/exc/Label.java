@@ -5,4 +5,7 @@ public class Label  extends Component{
     public void draw() {
         System.out.println("Draw Label");
     }
+    public Label (String text) {
+        super(text);
+    }
 }
