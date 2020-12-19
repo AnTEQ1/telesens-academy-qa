@@ -4,10 +4,10 @@ import com.academy.telesens.lesson6.exc.*;
 
 public class ComponentPoly {
     public static void main(String[] args) {
-        Label label = new Label();
-        Button button = new Button();
-        CheckBox checkBox = new CheckBox();
-        RoundButton roundButton = new RoundButton();
+        Label label = new Label("Label");
+        Button button = new Button("Button");
+        CheckBox checkBox = new CheckBox("LAbel");
+        RoundButton roundButton = new RoundButton("RoundButton");
 
         Component[] components = {label,button, checkBox, roundButton};
 
