@@ -8,4 +8,9 @@ public class Label  extends Component{
     public Label (String text) {
         super(text);
     }
+
+    @Override
+    public void draw3D() {
+        System.out.println("Draw 3D Label");
+    }
 }
