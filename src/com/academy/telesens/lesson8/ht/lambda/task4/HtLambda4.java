@@ -3,7 +3,7 @@ package com.academy.telesens.lesson8.ht.lambda.task4;
 *	Продемонстрируйте работу лямбда-выражения.
 *	"Helen Abdel Leon abc array var jMeter Selenium Yaguar" => "HelenAbdelLeonabcarrayvarjMeterSeleniumYaguar"
 */
-public class HtLambda3 {
+public class HtLambda4 {
     public static void main(String[] args) {
         DeleteSpaces deleteSpaces = s -> s.replace(" ", "");
         System.out.println(deleteSpaces.spaceDeletion("Helen Abdel Leon abc array var jMeter Selenium Yaguar"));
