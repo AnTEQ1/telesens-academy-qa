@@ -1,6 +1,8 @@
 package com.academy.telesens.lesson5.exc;
 
 import com.academy.telesens.lesson7.enumeration.Gender;
+import com.academy.telesens.lesson9.NegativeAgeError;
+import com.academy.telesens.lesson9.TooBigAgeError;
 
 import java.util.Objects;
 
@@ -29,7 +31,13 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public void setAge(int age) {
+    public void setAge(int age) throws NegativeAgeError, TooBigAgeError {
+        if (age < 0) {
+            throw new NegativeAgeError();
+        }
+        if (age > 140) {
+            throw new TooBigAgeError();
+        }
         this.age = age;
     }
 
