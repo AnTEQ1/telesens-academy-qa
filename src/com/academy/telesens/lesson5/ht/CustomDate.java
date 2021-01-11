@@ -32,6 +32,7 @@ package com.academy.telesens.lesson5.ht;
  */
 
 import com.academy.telesens.lesson7.ht.task2.DateFormat;
+import com.academy.telesens.lesson9.ht.task01.IllegalDateException;
 
 public class CustomDate {
     private int day;
@@ -44,10 +45,14 @@ public class CustomDate {
         this.year = 2020;
     }
 
-    public CustomDate(int day, int month, int year) {
-        this.day = day;
-        this.month = month;
-        this.year = year;
+    public CustomDate(int day, int month, int year) throws IllegalDateException {
+        if (!validate(day,month,year)) {
+            throw new IllegalDateException();
+        } else {
+            this.day = day;
+            this.month = month;
+            this.year = year;
+        }
     }
 
     public static boolean validate(int day, int month, int year) {

@@ -3,6 +3,7 @@ package com.academy.telesens.lesson6.ht;
 import com.academy.telesens.lesson5.ht.CustomDate;
 import com.academy.telesens.lesson7.ht.task2.DateFormat;
 import com.academy.telesens.lesson7.ht.task3.TimeFormat;
+import com.academy.telesens.lesson9.ht.task02.IllegalTimeException;
 
 import java.util.Objects;
 
@@ -87,15 +88,15 @@ public class CustomDateTime extends CustomDate {
         this.second = 38;
     }
 
-    public CustomDateTime(int year, int month, int day, int hour, int minute, int second) {
+    public CustomDateTime(int year, int month, int day, int hour, int minute, int second) throws IllegalTimeException {
         super(day,month,year);
         boolean isTimeValid = validate(hour,minute,second);
-        if (isTimeValid){
+        if (!isTimeValid) {
+            throw new IllegalTimeException();
+        } else {
             this.hour = hour;
             this.minute = minute;
             this.second = second;
-        } else {
-            System.out.println("Проверьте указанные значения времени");
         }
     }
 
@@ -145,7 +146,7 @@ public class CustomDateTime extends CustomDate {
         boolean secondsIsExist = false;
         boolean isTimeExist = false;
 
-        if (hour >= 0 && hour <= 24) {
+        if (hour >= 0 && hour <= 23) {
             hoursIsExist = true;
         }
         if (minute >= 0 && minute <= 59) {

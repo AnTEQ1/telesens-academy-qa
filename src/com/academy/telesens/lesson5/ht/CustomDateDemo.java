@@ -1,5 +1,7 @@
 package com.academy.telesens.lesson5.ht;
 
+import com.academy.telesens.lesson5.ht.CustomDate;
+
 import java.util.Random;
 
 public class CustomDateDemo {
