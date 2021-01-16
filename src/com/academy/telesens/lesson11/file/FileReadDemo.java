@@ -28,7 +28,7 @@ public class FileReadDemo {
                 System.out.println(line);
             }
         } catch (IOException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
 }
