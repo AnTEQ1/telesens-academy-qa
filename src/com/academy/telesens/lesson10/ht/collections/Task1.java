@@ -14,6 +14,7 @@ package com.academy.telesens.lesson10.ht.collections;
 */
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Task1 {
@@ -44,7 +45,9 @@ public class Task1 {
         System.out.println("e: " + list);
 
         //f
-        list.sort(String::lastIndexOf);
+        //Collections.reverse(list); // перевернет отсортированный по алфавиту
+        list.sort((s1,s2) -> s2.compareTo(s1)); // перевернет список по алфавиту в обратном порядке, даже если предварительно не отсортирован
+        //list.sort(String::lastIndexOf);// это не подходит для сортировки, т.к. ищет подстроку s2 в строке s1
         System.out.println("f: " + list);
 
         //g
